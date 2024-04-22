@@ -1,0 +1,11 @@
+{
+  "@@locale": "en",
+  "landingText": "Tap on the cube to scan a QR code",
+  "@landingText": {
+    "description": "Texte d'accueil de l'application"
+  },
+  "mmiformations": "MMI's Formations",
+  "batimentStory": "Batiment story",
+  "quizPlay": "Play quiz",
+  "featureLocked": "This feature is locked"
+}
