@@ -1,11 +1,12 @@
 {
   "@@locale": "fr",
-  "landingText": "Appuies sur le cube pour scanner un QR code",
+  "landingText": "Appuyez sur le cube pour scanner un QR code",
   "@landingText": {
     "description": "Texte d'accueil de l'application"
   },
   "mmiformations": "Formations MMI",
   "batimentStory": "Histoire du bâtiment",
-  "quizPlay": "Jouer au quizz",
-  "featureLocked": "Fonctionnalitée verrouillée"
+  "projets": "Projets des étudiants",
+  "featureLocked": "Trouvez et scannez un QR Code pour déverouiller cette fonctionalité",
+  "formationMMIHeading": "Le BUT MMI dispose de différent parcours"
 }

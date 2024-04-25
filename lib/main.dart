@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/crea_num_screen.dart';
+import 'package:flutter_application_1/screens/dev_screen.dart';
 import 'package:flutter_application_1/screens/home_screen.dart';
+import 'package:flutter_application_1/screens/lp_jeux_screen.dart';
+import 'package:flutter_application_1/screens/mmi_formation_screen.dart';
 import 'package:flutter_application_1/screens/scanner_screen.dart';
+import 'package:flutter_application_1/screens/strat_ux_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -45,6 +50,11 @@ class MainAppState extends State<MainApp> {
         HomeScreen.routeName: (context) =>
             const HomeScreen(), // Add the missing import statement for HomeScreen at the top of the file
         ScannerScreen.routeName: (context) => const ScannerScreen(),
+        MMiFormationScreen.routeName: (context) => const MMiFormationScreen(),
+        CreaNumScreen.routeName: (context) => const CreaNumScreen(),
+        StratUXScreen.routeName: (context) => const StratUXScreen(),
+        DevWebScreen.routeName: (context) => const DevWebScreen(),
+        LPJeuxScreen.routeName: (context) => const LPJeuxScreen(),
       },
       title: 'Flutter Demo',
       home: const HomeScreen(),

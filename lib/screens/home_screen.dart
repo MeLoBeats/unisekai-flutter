@@ -27,7 +27,7 @@ class HomeScreenState extends State<HomeScreen> {
         actions: <Widget>[
           GFIconButton(
             icon: const Icon(
-              Icons.language,
+              Icons.translate_outlined,
               color: Colors.white,
             ),
             onPressed: () {
@@ -46,9 +46,14 @@ class HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: <Widget>[
             const SizedBox(height: 60),
-            const Image(
-              image: AssetImage('assets/images/logo.png'),
-              width: 200.0,
+            GestureDetector(
+              child: const Image(
+                image: AssetImage('assets/images/logo.png'),
+                width: 200.0,
+              ),
+              onTap: () {
+                Navigator.of(context).pushNamed('/scanner');
+              },
             ),
             const SizedBox(height: 50),
             Text(
@@ -61,14 +66,18 @@ class HomeScreenState extends State<HomeScreen> {
                 LockedButton(
                   label: AppLocalizations.of(context)!.mmiformations,
                   isLocked: false,
+                  pageUrl: "/mmi",
+                ),
+                const SizedBox(height: 30),
+                LockedButton(
+                  label: AppLocalizations.of(context)!.projets,
+                  isLocked: false,
+                  pageUrl: "/mmi",
                 ),
                 const SizedBox(height: 30),
                 LockedButton(
                   label: AppLocalizations.of(context)!.batimentStory,
-                ),
-                const SizedBox(height: 30),
-                LockedButton(
-                  label: AppLocalizations.of(context)!.quizPlay,
+                  pageUrl: "/mmi",
                 ),
               ],
             )
@@ -76,8 +85,8 @@ class HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButton: SizedBox(
-        width: 70,
-        height: 70,
+        width: 90,
+        height: 90,
         child: FloatingActionButton(
           onPressed: () {
             Navigator.of(context).pushNamed('/scanner');
@@ -85,7 +94,7 @@ class HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.white,
           child: const Icon(
             Icons.qr_code,
-            size: 40.0,
+            size: 60.0,
           ),
         ),
       ),

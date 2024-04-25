@@ -4,7 +4,12 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class LockedButton extends StatefulWidget {
   final String label;
   final bool isLocked;
-  const LockedButton({Key? key, required this.label, this.isLocked = true})
+  final String pageUrl;
+  const LockedButton(
+      {Key? key,
+      required this.label,
+      this.isLocked = true,
+      required this.pageUrl})
       : super(key: key);
 
   @override
@@ -21,7 +26,7 @@ class _LockedButtonState extends State<LockedButton> {
       child: ElevatedButton(
         onPressed: () {
           if (!widget.isLocked) {
-            Navigator.pushNamed(context, '/scanner');
+            Navigator.pushNamed(context, widget.pageUrl);
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
