@@ -80,7 +80,7 @@ class HomeScreenState extends State<HomeScreen> {
                   return LockedButton(
                     label: AppLocalizations.of(context)!.projets,
                     isLocked: appState.isLockedButton1,
-                    pageUrl: "/mmi",
+                    pageUrl: "/ar",
                   );
                 }),
                 const SizedBox(height: 30),

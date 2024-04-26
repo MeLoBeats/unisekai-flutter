@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/locked_feature.dart';
+import 'package:flutter_application_1/screens/ar_screen.dart';
 import 'package:flutter_application_1/screens/batiment_illustration.dart';
 import 'package:flutter_application_1/screens/crea_num_screen.dart';
 import 'package:flutter_application_1/screens/dev_screen.dart';
@@ -75,6 +76,7 @@ class MainAppState extends State<MainApp> with ChangeNotifier {
         DevWebScreen.routeName: (context) => const DevWebScreen(),
         LPJeuxScreen.routeName: (context) => const LPJeuxScreen(),
         BatimentIlluScreen.routeName: (context) => const BatimentIlluScreen(),
+        ARScreen.routeName: (context) => const ARScreen(),
       },
       title: 'UNISEKAI',
       home: const HomeScreen(),
