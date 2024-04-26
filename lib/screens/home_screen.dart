@@ -58,8 +58,8 @@ class HomeScreenState extends State<HomeScreen> {
                 final appState =
                     Provider.of<MainAppState>(context, listen: false);
 
-                appState.setIsLockedButton1(false);
-                appState.setIsLockedButton2(false);
+                appState.setIsLockedButton1(!appState.isLockedButton1);
+                appState.setIsLockedButton2(!appState.isLockedButton2);
               },
             ),
             const SizedBox(height: 20),
