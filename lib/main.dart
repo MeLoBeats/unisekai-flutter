@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/batiment_illustration.dart';
 import 'package:flutter_application_1/screens/crea_num_screen.dart';
 import 'package:flutter_application_1/screens/dev_screen.dart';
 import 'package:flutter_application_1/screens/home_screen.dart';
@@ -14,9 +15,7 @@ void main() {
 }
 
 class MainApp extends StatefulWidget {
-  const MainApp({Key? key})
-      : super(
-            key: key); // Remove the `const` keyword before MainApp constructor
+  const MainApp({super.key});
 
   @override
   MainAppState createState() => MainAppState();
@@ -55,8 +54,9 @@ class MainAppState extends State<MainApp> {
         StratUXScreen.routeName: (context) => const StratUXScreen(),
         DevWebScreen.routeName: (context) => const DevWebScreen(),
         LPJeuxScreen.routeName: (context) => const LPJeuxScreen(),
+        BatimentIlluScreen.routeName: (context) => const BatimentIlluScreen(),
       },
-      title: 'Flutter Demo',
+      title: 'UNISEKAI',
       home: const HomeScreen(),
     );
   }

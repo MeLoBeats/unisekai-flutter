@@ -45,7 +45,7 @@ class HomeScreenState extends State<HomeScreen> {
       body: Center(
         child: Column(
           children: <Widget>[
-            const SizedBox(height: 60),
+            const SizedBox(height: 30),
             GestureDetector(
               child: const Image(
                 image: AssetImage('assets/images/logo.png'),
@@ -55,12 +55,12 @@ class HomeScreenState extends State<HomeScreen> {
                 Navigator.of(context).pushNamed('/scanner');
               },
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 20),
             Text(
               AppLocalizations.of(context)!.landingText,
-              style: AppTypography.Typography.headline,
+              style: AppTypography.Typography.title,
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 50),
             Column(
               children: [
                 LockedButton(
@@ -71,13 +71,13 @@ class HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 30),
                 LockedButton(
                   label: AppLocalizations.of(context)!.projets,
-                  isLocked: false,
                   pageUrl: "/mmi",
                 ),
                 const SizedBox(height: 30),
                 LockedButton(
                   label: AppLocalizations.of(context)!.batimentStory,
-                  pageUrl: "/mmi",
+                  isLocked: false,
+                  pageUrl: "/batiment-illustration",
                 ),
               ],
             )

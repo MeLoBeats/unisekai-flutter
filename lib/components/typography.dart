@@ -44,7 +44,7 @@ class Typography {
     color: color,
     fontFamily: 'Roboto',
     inherit: true,
-    fontSize: 24.0,
+    fontSize: 32.0,
     fontWeight: FontWeight.w600,
     textBaseline: TextBaseline.alphabetic,
   );
@@ -53,8 +53,8 @@ class Typography {
     color: color,
     fontFamily: 'Roboto',
     inherit: true,
-    fontSize: 20.0,
-    fontWeight: FontWeight.w500,
+    fontSize: 40.0,
+    fontWeight: FontWeight.w900,
     textBaseline: TextBaseline.alphabetic,
   );
   static const TextStyle subhead = TextStyle(

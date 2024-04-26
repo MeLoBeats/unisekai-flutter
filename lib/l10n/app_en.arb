@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "landingText": "Tap on the cube to scan a QR code",
+  "landingText": "UNISEKAI",
   "@landingText": {
     "description": "Texte d'accueil de l'application"
   },
