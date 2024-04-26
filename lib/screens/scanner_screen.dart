@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/main.dart';
+import 'package:provider/provider.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class ScannerScreen extends StatefulWidget {
@@ -11,105 +13,58 @@ class ScannerScreen extends StatefulWidget {
   _ScannerScreenState createState() => _ScannerScreenState();
 }
 
-class ExpectedScanResult {
-  final String type;
-  final IconData icon;
-
-  ExpectedScanResult(this.type, this.icon);
-}
-
 class _ScannerScreenState extends State<ScannerScreen> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  Barcode? result;
-  QRViewController? controller;
-
-  final recognisedCodes = <ExpectedScanResult>[
-    ExpectedScanResult('cake', Icons.cake),
-    ExpectedScanResult('cocktail', Icons.local_drink_outlined),
-    ExpectedScanResult('coffee', Icons.coffee),
-    ExpectedScanResult('burger', Icons.fastfood_rounded),
-  ];
+  late QRViewController controller;
+  bool isScanning = true; // Flag to determine if scanning is enabled
 
   @override
-  void reassemble() {
-    super.reassemble();
-    controller!.pauseCamera();
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
-      setState(() {
-        result = scanData;
-      });
-    });
-  }
+      // Handle scanned QR code data
+      if (isScanning) {
+        String? scannedCode = scanData.code;
 
-  @override
-  void dispose() {
-    // ignore: unrelated_type_equality_checks
-    if (TargetPlatform.windows == true) {
-      controller?.dispose();
-      // ignore: unrelated_type_equality_checks
-    } else if (TargetPlatform.iOS == true) {
-      controller?.resumeCamera();
-    }
-    super.dispose();
+        // Check if scanned code is valid (e.g., "projets" or "batiment")
+        final appState = Provider.of<MainAppState>(context, listen: false);
+
+        // Vérifier le type de code scanné et déverrouiller le bouton correspondant
+        if (scannedCode == 'projets') {
+          appState.setIsLockedButton1(false); // Déverrouiller le bouton 1
+        } else if (scannedCode == 'batiment') {
+          appState.setIsLockedButton2(false); // Déverrouiller le bouton 2
+        }
+
+        // Stop scanning after processing the first valid QR code
+        setState(() {
+          isScanning = false;
+        });
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0E7865),
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        title: const Text(
-          'Unisekai',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 28,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        elevation: 0.0,
-        backgroundColor: const Color(0xFF0E7865),
+        title: const Text('QR Code Scanner'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              flex: 5,
-              child: QRView(
-                cameraFacing: CameraFacing.back, // Use the rear camera
-                key: qrKey, // The global key for the scanner
-                onQRViewCreated:
-                    _onQRViewCreated, // Function to call after the QR View is created
-                overlay: QrScannerOverlayShape(
-                  // Configure the overlay to look nice
-                  borderRadius: 10,
-                  borderWidth: 5,
-                  borderColor: Colors.white,
-                ),
-              ),
+      body: Column(
+        children: [
+          Expanded(
+            child: QRView(
+              key: qrKey,
+              onQRViewCreated: _onQRViewCreated,
             ),
-            Expanded(
-              flex: 1,
-              child: Center(
-                child: (result != null)
-                    ? Text(
-                        'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
-                    : Text('Scan a code'),
-              ),
-            )
-          ],
-        ),
+          ),
+          const SizedBox(height: 20),
+        ],
       ),
     );
   }

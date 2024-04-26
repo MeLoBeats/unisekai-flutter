@@ -4,8 +4,11 @@ import 'package:flutter_application_1/components/locked_button.dart';
 import 'package:flutter_application_1/components/typography.dart'
     // ignore: library_prefixes
     as AppTypography;
+import 'package:flutter_application_1/main.dart';
+import 'package:flutter_application_1/models/locked_feature.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -52,7 +55,11 @@ class HomeScreenState extends State<HomeScreen> {
                 width: 200.0,
               ),
               onTap: () {
-                Navigator.of(context).pushNamed('/scanner');
+                final appState =
+                    Provider.of<MainAppState>(context, listen: false);
+
+                appState.setIsLockedButton1(false);
+                appState.setIsLockedButton2(false);
               },
             ),
             const SizedBox(height: 20),
@@ -69,16 +76,21 @@ class HomeScreenState extends State<HomeScreen> {
                   pageUrl: "/mmi",
                 ),
                 const SizedBox(height: 30),
-                LockedButton(
-                  label: AppLocalizations.of(context)!.projets,
-                  pageUrl: "/mmi",
-                ),
+                Consumer(builder: (context, MainAppState appState, child) {
+                  return LockedButton(
+                    label: AppLocalizations.of(context)!.projets,
+                    isLocked: appState.isLockedButton1,
+                    pageUrl: "/mmi",
+                  );
+                }),
                 const SizedBox(height: 30),
-                LockedButton(
-                  label: AppLocalizations.of(context)!.batimentStory,
-                  isLocked: false,
-                  pageUrl: "/batiment-illustration",
-                ),
+                Consumer(builder: (context, MainAppState appState, child) {
+                  return LockedButton(
+                    label: AppLocalizations.of(context)!.batimentStory,
+                    isLocked: appState.isLockedButton2,
+                    pageUrl: "/batiment-illustration",
+                  );
+                }),
               ],
             )
           ],

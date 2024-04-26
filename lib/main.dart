@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/locked_feature.dart';
 import 'package:flutter_application_1/screens/batiment_illustration.dart';
 import 'package:flutter_application_1/screens/crea_num_screen.dart';
 import 'package:flutter_application_1/screens/dev_screen.dart';
@@ -9,9 +10,13 @@ import 'package:flutter_application_1/screens/scanner_screen.dart';
 import 'package:flutter_application_1/screens/strat_ux_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => MainAppState(),
+    child: const MainApp(),
+  ));
 }
 
 class MainApp extends StatefulWidget {
@@ -24,8 +29,23 @@ class MainApp extends StatefulWidget {
       context.findAncestorStateOfType<MainAppState>();
 }
 
-class MainAppState extends State<MainApp> {
+class MainAppState extends State<MainApp> with ChangeNotifier {
   Locale _locale = const Locale('fr');
+  bool _isLockedButton1 = true;
+  bool _isLockedButton2 = true;
+
+  bool get isLockedButton1 => _isLockedButton1;
+  bool get isLockedButton2 => _isLockedButton2;
+
+  void setIsLockedButton1(bool value) {
+    _isLockedButton1 = value;
+    notifyListeners();
+  }
+
+  void setIsLockedButton2(bool value) {
+    _isLockedButton2 = value;
+    notifyListeners();
+  }
 
   void setLocale(Locale value) {
     setState(() {
